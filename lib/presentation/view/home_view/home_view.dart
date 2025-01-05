@@ -25,46 +25,52 @@ class HomeView extends StatelessWidget {
         historyCubit.getHistoryColors();
       },
       builder: (_, state) {
-        return GestureDetector(
-          onTap: changeColorCubit.changeColorRandomly,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            color: state is ChangeColorSuccess
-                ? state.newColor.toColor() //
-                : Colors.white,
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Hello there',
-                  style: AppStyles.textStyle17(context),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'Alpha: ${state is ChangeColorSuccess ? state.newColor.alpha : Constants.defaultColorValue}',
-                  style: AppStyles.textStyle17(context),
-                ),
-                Text(
-                  'Red: ${state is ChangeColorSuccess ? state.newColor.red : Constants.defaultColorValue}',
-                  style: AppStyles.textStyle17(context).copyWith(
-                    color: Colors.red,
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: changeColorCubit.changeColorRandomly,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  color: state is ChangeColorSuccess
+                      ? state.newColor.toColor() //
+                      : Colors.white,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Hello there',
+                        style: AppStyles.textStyle17(context),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Alpha: ${state is ChangeColorSuccess ? state.newColor.alpha : Constants.defaultColorValue}',
+                        style: AppStyles.textStyle17(context),
+                      ),
+                      Text(
+                        'Red: ${state is ChangeColorSuccess ? state.newColor.red : Constants.defaultColorValue}',
+                        style: AppStyles.textStyle17(context).copyWith(
+                          color: Colors.red,
+                        ),
+                      ),
+                      Text(
+                        'Green: ${state is ChangeColorSuccess ? state.newColor.green : Constants.defaultColorValue}',
+                        style: AppStyles.textStyle17(context).copyWith(
+                          color: Colors.green,
+                        ),
+                      ),
+                      Text(
+                        'Blue: ${state is ChangeColorSuccess ? state.newColor.blue : Constants.defaultColorValue}',
+                        style: AppStyles.textStyle17(context).copyWith(
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  'Green: ${state is ChangeColorSuccess ? state.newColor.green : Constants.defaultColorValue}',
-                  style: AppStyles.textStyle17(context).copyWith(
-                    color: Colors.green,
-                  ),
-                ),
-                Text(
-                  'Blue: ${state is ChangeColorSuccess ? state.newColor.blue : Constants.defaultColorValue}',
-                  style: AppStyles.textStyle17(context).copyWith(
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
