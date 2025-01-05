@@ -1,4 +1,4 @@
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars, no_magic_number
 
 import 'dart:math';
 
@@ -27,7 +27,17 @@ class ChangeColorCubit extends Cubit<ChangeColorState> {
     final Random random = Random();
 
     final ColorModel newColor = ColorModel(
-      alpha: random.nextInt(Constants.kMaxRandomNumberForColors),
+      //! important: if you want to enable Alpha
+      //! just remove 255 and write [alpha] instead
+      ///now it generate (256 X 256 X 256) colors
+      ///which means 16777216 colors as you want.
+      ///But if you want to enable opacity (alpha)
+      ///just what you have to do is to write
+      ///``dart
+      ///random.nextInt(Constants.kMaxRandomNumberForColors)
+      ///``
+      /// instead of 255
+      alpha: 255,
       red: random.nextInt(Constants.kMaxRandomNumberForColors),
       green: random.nextInt(Constants.kMaxRandomNumberForColors),
       blue: random.nextInt(Constants.kMaxRandomNumberForColors),
