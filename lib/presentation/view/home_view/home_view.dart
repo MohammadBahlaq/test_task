@@ -18,59 +18,51 @@ class HomeView extends StatelessWidget {
     final changeColorCubit = BlocProvider.of<ChangeColorCubit>(context);
     final historyCubit = BlocProvider.of<ColorsHistoryCubit>(context);
 
-// if (width < SizeConfig.tablet)
-
     return BlocConsumer<ChangeColorCubit, ChangeColorState>(
       listener: (_, __) {
         historyCubit.getHistoryColors();
       },
       builder: (_, state) {
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: changeColorCubit.changeColorRandomly,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  color: state is ChangeColorSuccess
-                      ? state.newColor.toColor() //
-                      : Colors.white,
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Hello there',
-                        style: AppStyles.textStyle17(context),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Alpha: ${state is ChangeColorSuccess ? state.newColor.alpha : Constants.defaultColorValue}',
-                        style: AppStyles.textStyle17(context),
-                      ),
-                      Text(
-                        'Red: ${state is ChangeColorSuccess ? state.newColor.red : Constants.defaultColorValue}',
-                        style: AppStyles.textStyle17(context).copyWith(
-                          color: Colors.red,
-                        ),
-                      ),
-                      Text(
-                        'Green: ${state is ChangeColorSuccess ? state.newColor.green : Constants.defaultColorValue}',
-                        style: AppStyles.textStyle17(context).copyWith(
-                          color: Colors.green,
-                        ),
-                      ),
-                      Text(
-                        'Blue: ${state is ChangeColorSuccess ? state.newColor.blue : Constants.defaultColorValue}',
-                        style: AppStyles.textStyle17(context).copyWith(
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ],
+        return GestureDetector(
+          onTap: changeColorCubit.changeColorRandomly,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            color: state is ChangeColorSuccess
+                ? state.newColor.toColor() //
+                : Colors.white,
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Hello there',
+                  style: AppStyles.textStyle17(context),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Alpha: ${state is ChangeColorSuccess ? state.newColor.alpha : Constants.defaultColorValue}',
+                  style: AppStyles.textStyle17(context),
+                ),
+                Text(
+                  'Red: ${state is ChangeColorSuccess ? state.newColor.red : Constants.defaultColorValue}',
+                  style: AppStyles.textStyle17(context).copyWith(
+                    color: Colors.red,
                   ),
                 ),
-              ),
-            ],
+                Text(
+                  'Green: ${state is ChangeColorSuccess ? state.newColor.green : Constants.defaultColorValue}',
+                  style: AppStyles.textStyle17(context).copyWith(
+                    color: Colors.green,
+                  ),
+                ),
+                Text(
+                  'Blue: ${state is ChangeColorSuccess ? state.newColor.blue : Constants.defaultColorValue}',
+                  style: AppStyles.textStyle17(context).copyWith(
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
